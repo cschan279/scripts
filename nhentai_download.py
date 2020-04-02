@@ -5,6 +5,7 @@
 """
 import requests 
 import re
+from glob import glob
 from tqdm import trange
 import urllib.request
 import os
@@ -53,6 +54,37 @@ def downloadlinks(links, location, skip):
             print(e)
             return False, i
     return True, 9999
+def fd_list(fd):
+    file_name = os.path.join(fd, '*.*')
+    file_list = glob(file_name)
+    print(file_list)
+    file_list.sort(key=lambda f:int(re.sub('\D','',f)))
+    print('v'*20)
+    print(file_list)
+    print('#'*20)
+    return file_list
+
+def writefile(fd, f_ls):
+    imgtag = '<img src="{}" width="100%"/>\n'
+    html_fname = os.path.join(fd, '00.html')
+    with open(html_fname, 'w') as n_htm:
+        n_htm.write('<html><head></head>\n')
+        n_htm.write('<body bgcolor="#555555">\n')
+        n_htm.write('<table width="1000" align="center">\n')
+        n_htm.write('<tr><td width="100%">\n')
+        n_htm.write('<h1 align="center">')
+        n_htm.write(fd)
+        n_htm.write('</h1>')
+        n_htm.write('</td></tr>\n')
+        for nm in file_list:
+            fn = os.path.split(nm)[1]
+            n_htm.write('<tr><td>\n')
+            print(imgtag.format(fn))
+            n_htm.write(imgtag.format(fn))
+            n_htm.write('<br/>\n')
+            n_htm.write('</td></tr>\n')
+        n_htm.write('</table></body></html>\n')
+    return
 
 if __name__ == '__main__':
     cm_id = sys.argv[1]
@@ -75,5 +107,7 @@ if __name__ == '__main__':
     ret, num = downloadlinks(links, fd, skip)
     if ret:
         print('Completely download {} for {}'.format(len(links),cm_id))
+        file_list = fd_list(fd)
+        writefile(fd, file_list)
     else:
         print('Download progress suck at {}'.format(num))

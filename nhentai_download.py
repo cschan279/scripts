@@ -18,7 +18,7 @@ https://t.nhentai.net/galleries/<num>/<num>t.jpg
 def num_from_link(link):
     fn = link.rsplit('/',1)[1]
     num = fn.split('t')[0]
-    return num
+    return int(num)
 
 def get_links(cm_id):
     

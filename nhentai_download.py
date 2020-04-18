@@ -5,11 +5,11 @@
 """
 import requests 
 import re
-from glob import glob
 from tqdm import trange
 import urllib.request
 import os
 import sys
+from glob import glob
 
 """
 https://i.nhentai.net/galleries/<num>/<num>.jpg
@@ -54,6 +54,7 @@ def downloadlinks(links, location, skip):
             print(e)
             return False, i
     return True, 9999
+
 def fd_list(fd):
     file_name = os.path.join(fd, '*.*')
     file_list = glob(file_name)
@@ -76,7 +77,7 @@ def writefile(fd, f_ls):
         n_htm.write(fd)
         n_htm.write('</h1>')
         n_htm.write('</td></tr>\n')
-        for nm in file_list:
+        for nm in f_ls:
             fn = os.path.split(nm)[1]
             n_htm.write('<tr><td>\n')
             print(imgtag.format(fn))
@@ -91,6 +92,7 @@ if __name__ == '__main__':
     fd = 'n-{}'.format(cm_id)
     if not os.path.isdir(fd):
         os.mkdir(fd)
+        skip = 0
     else:
         opt = input('dir {} already exist, continue?[Y|N|int:skip]'.format(fd))
         if opt == "Y" or opt == "y":
@@ -107,7 +109,7 @@ if __name__ == '__main__':
     ret, num = downloadlinks(links, fd, skip)
     if ret:
         print('Completely download {} for {}'.format(len(links),cm_id))
-        file_list = fd_list(fd)
-        writefile(fd, file_list)
+        
+        writefile(fd, fd_list(fd))
     else:
         print('Download progress suck at {}'.format(num))

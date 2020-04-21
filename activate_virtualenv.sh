@@ -1,5 +1,6 @@
 #! /bin/bash
 
+# copy it into .bashrc
 function activate() {
 	if [ -z "$1" ]
 		then

@@ -5,7 +5,7 @@ function activate() {
 		then
 		    en="/home/"$USER"/venv/venv/bin/activate"
 	else
-		en="/home/"$USER"/venv/venv_"$1"/bin/activate"
+		en="/home/"$USER"/venv/"$1"/bin/activate"
 		
 	fi
 	echo $en

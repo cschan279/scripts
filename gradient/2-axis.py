@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import numpy as np
+from random import randint
 import cv2
 """
 Examples
@@ -19,15 +20,15 @@ array([[0, 1, 2],
 #w, h = 1920,1080
 w, h = 800,600
 
-x = np.fromfunction(lambda i,j:j*255//w, (h,w), dtype=np.uint32).astype(np.uint8)
-x = np.expand_dims(x,axis=2)
+x = np.fromfunction(lambda i,j:j*(255-rg*2)//w, (h,w))
+x = np.expand_dims(x,axis=2).astype(np.uint8)
 
-y = np.fromfunction(lambda i,j:i*255//h, (h,w), dtype=np.uint32).astype(np.uint8)
-y = np.expand_dims(y,axis=2)
+y = np.fromfunction(lambda i,j:i*(255-rg*2)//h, (h,w))
+y = np.expand_dims(y,axis=2).astype(np.uint8)
 
 
-z = np.ones((h,w,1), dtype=np.uint32) * 255
-z = z.astype(np.uint8)
+z = np.ones((h,w,1), dtype=np.uint8) * 255
+
 
 
 im = np.concatenate((z,x,y), axis=2)

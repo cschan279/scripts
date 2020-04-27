@@ -7,8 +7,8 @@ import numpy as np
 from random import shuffle, randint
 import cv2
 
-#w, h = 1920,1080
-w, h = 800,600
+w, h = 1920,1080
+#w, h = 800,600
 rg = 50
 
 x = np.fromfunction(lambda i,j,k:j*(255-rg*2)//w+rg, (h,w,1))#.astype(np.uint8)
@@ -34,3 +34,4 @@ print(im.shape)
 cv2.imshow('test', im)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
+cv2.imwrite('a.jpg', im)

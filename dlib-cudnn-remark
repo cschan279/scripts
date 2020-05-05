@@ -1,5 +1,0 @@
-if installed cudnn from .tar.gz..., 
-dlib won't detect cudnn
-to install with cuda correctly, 
-download dlib source and cmake it include cudnn.h path as below:
-sudo cmake -DCMAKE_PREFIX_PATH=/usr/local/cuda-10.0/include/ ..

@@ -1,0 +1,12 @@
+
+### dlib with CUDA ###
+if installed cudnn from .tar.gz..., 
+dlib won't detect cudnn
+to install with cuda correctly, 
+link the cudnn files to dlib required position:
+sudo ln -s /usr/local/cuda-10.0/include/cudnn.h /usr/local/include/cudnn.h
+sudo ln -s /usr/local/cuda-10.0/lib64/libcudnn.so /usr/local/lib/libcudnn.so
+
+### include opencv with cuda ###
+sudo apt-get install -y opencv-data &&
+sudo apt-get install libopencv-dev

@@ -55,5 +55,11 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
     -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
     -D BUILD_opencv_cudacodec=OFF \
     -D BUILD_EXAMPLES=ON ..
+
+nproc
+make -j $(($(nproc) - 1))
+
+sudo make install
+sudo ldconfig
 ##################################################
 ##################################################

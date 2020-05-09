@@ -53,7 +53,6 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
     -D WITH_CUBLAS=1 \
     -D INSTALL_PYTHON_EXAMPLES=ON \
     -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
-    -D BUILD_opencv_cudacodec=OFF \
     -D BUILD_EXAMPLES=ON ..
 
 nproc

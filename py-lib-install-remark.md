@@ -55,15 +55,25 @@ apt-get install -y libopencv-dev
 ```
 apt-get install -y gstreamer1.0*
 apt install -y ubuntu-restricted-extras
-apt install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
+apt install -y libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
 ```
 ### 4. pull opencv source code from git and checkout required version
 ```
-ver=4.2.0
+ver=4.3.0
+wget -O opencv.zip https://github.com/opencv/opencv/archive/$(ver).zip
+wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/$(ver).zip
+unzip opencv.zip
+unzip opencv_contrib.zip
+mv opencv* opencv
+mv opencv_contrib* opencv_contrib
+```
+or  
+```
+ver=4.3.0
 git clone https://github.com/opencv/opencv_contrib.git
-cd opencv_contrib && git checkout -b $ver && cd ..
+cd opencv_contrib && git checkout $ver && cd ..
 git clone https://github.com/opencv/opencv.git
-cd opencv && git checkout -b $ver
+cd opencv && git checkout $ver
 ```
 ### 5. cmake for prepare build
 ```

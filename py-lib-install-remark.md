@@ -8,6 +8,9 @@
 > it is much better to pull cuda image from nvidia:  
 ```docker pull nvidia/cuda:10.0-cudnn7-devel-ubuntu18.04```
 
+> ```apt update && apt install -y python3-dev python3-pip wget git```
+
+
 then install cudnn from tar.gz file  
 >   
 ```
@@ -45,12 +48,9 @@ ln -s /usr/lib/x86_64-linux-gnu/libcudnn.so /usr/local/lib/libcudnn.so
 
 # Compile, install opencv with cuda
 ### 1. install library
-```
-apt-get install -y opencv-data &&
-apt-get install -y libopencv-dev
-```
+> ```apt-get install -y opencv-data && apt-get install -y libopencv-dev```
 ### 2. enable tesseract build (Optional)
-```apt-get install -y tesseract-ocr libtesseract-dev libleptonica-dev```  
+> ```apt-get install -y tesseract-ocr libtesseract-dev libleptonica-dev```  
 ### 3. enable gstreamer build (Optional)
 ```
 apt-get install -y gstreamer1.0*
@@ -60,12 +60,9 @@ apt install -y libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
 ### 4. pull opencv source code from git and checkout required version
 ```
 ver=4.3.0
-wget -O opencv.zip https://github.com/opencv/opencv/archive/$(ver).zip
-wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/$(ver).zip
-unzip opencv.zip
-unzip opencv_contrib.zip
-mv opencv* opencv
-mv opencv_contrib* opencv_contrib
+wget -O - https://github.com/opencv/opencv/archive/$ver.tar.gz | tar xz
+wget -O - https://github.com/opencv/opencv_contrib/archive/$ver.tar.gz | tar xz
+mv opencv_contrib-* opencv_contrib && mv opencv-* opencv
 ```
 or  
 ```

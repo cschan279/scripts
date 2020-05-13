@@ -6,8 +6,8 @@
 ## p.s.
 > instead of pull tf-gpu image, 
 > it is much better to pull cuda image from nvidia:  
-```docker pull nvidia/cuda:10.0-cudnn7-devel-ubuntu18.04```
-
+```docker pull nvidia/cuda:10.0-cudnn7-devel-ubuntu18.04```  
+```docker run --gpus all -it --name cuda100 -p 8080:80 nvidia/cuda:10.0-cudnn7-devel-ubuntu18.04 bash```  
 then install cudnn from tar.gz file  
 >   
 ```
@@ -22,10 +22,10 @@ ln -s /usr/lib/x86_64-linux-gnu/libcudnn.so /usr/local/lib/libcudnn.so
 
 ---
 # Verify with tensorflow-gpu
-> For tf-1.x:
-```import tensorflow as tf;tf.test.is_gpu_available();```
-> for tf-2.x:
-```import tensorflow as tf;tf.config.list_physical_devices('GPU');```
+> For tf-1.x:  
+```import tensorflow as tf;tf.test.is_gpu_available();```  
+> for tf-2.x:  
+```import tensorflow as tf;tf.config.list_physical_devices('GPU');```  
 ---
 
 ---
@@ -45,11 +45,12 @@ ln -s /usr/lib/x86_64-linux-gnu/libcudnn.so /usr/local/lib/libcudnn.so
 
 # Compile, install opencv with cuda
 ### 1. install library
-```
-apt-get install -y opencv-data &&
-apt-get install -y libopencv-dev
-```
+>   
+```apt-get install -y opencv-data libopencv-dev libgtk-3-dev```  
+> **for install under docker container, install below first:**  
+> ```apt install -y python3-dev python3-pip git wget```  
 ### 2. enable tesseract build (Optional)
+>   
 ```apt-get install -y tesseract-ocr libtesseract-dev libleptonica-dev```  
 ### 3. enable gstreamer build (Optional)
 ```
@@ -67,7 +68,7 @@ unzip opencv_contrib.zip
 mv opencv* opencv
 mv opencv_contrib* opencv_contrib
 ```
-or  
+**or**  
 ```
 ver=4.3.0
 git clone https://github.com/opencv/opencv_contrib.git

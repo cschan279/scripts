@@ -12,16 +12,19 @@ font1.loadFontData('./arial.ttf',0)
 font2 = cv2.freetype.createFreeType2()
 font2.loadFontData('./times.ttf',0)
 
-ft1 = cv2.FONT_HERSHEY_COMPLEX
-ft2 = cv2.FONT_HERSHEY_COMPLEX
+#ft1 = cv2.FONT_HERSHEY_COMPLEX
+#ft2 = cv2.FONT_HERSHEY_COMPLEX
+ft1, ft2 = font1, font2
 x1, x2 = 200, 600
 y1, y2 = 100, 400
 c1 = (200,240)
 c2 = (600,240)
 radius = 75
-scale1, thick1 = 1.5,3
+#scale1, thick1 = 1.5,3
+scale1, thick1 = 48,-1
 color1 = (0,0,0)
-scale2, thick2 = 1,2
+#scale2, thick2 = 1,2
+scale2, thick2 = 32,-1
 color2 = (0,0,0)
 #@#@#@#@#@#@#@# Config #@#@#@#@#@#@#@#
 

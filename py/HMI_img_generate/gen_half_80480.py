@@ -27,6 +27,26 @@ color1 = (0,0,0)
 scale2, thick2 = 32,-1
 color2 = (0,0,0)
 #@#@#@#@#@#@#@# Config #@#@#@#@#@#@#@#
+logo_path = 'page_logo2.png'
+
+def sticklogo(img, logo_path):
+    im1,im2 = img.copy()//2, img.copy()//2
+    logo = cv2.imread(logo_path)
+    imS = img.shape[:-1] # h, w
+    loS = logo.shape[:-1]
+    # (255-x) for remove transparent white background
+    #logo = (255-logo)//2
+    #logo = logo//2
+    #bottom-right
+    #pos = (imS[0]-loS[0],imS[1]-loS[1])
+    #img[pos[0]:,pos[1]:] = img[pos[0]:,pos[1]:] + (255-logo)//2
+    #top-right
+    pos = (loS[0],imS[1]-loS[1])
+    #print(img[:pos[0],pos[1]:].shape)
+    im1[:pos[0],pos[1]:] = im1[:pos[0],pos[1]:] + logo
+    im_out = im1 + im2
+    return im_out
+
 
 def textimg(img, text, ft, ctrX, ctrY, 
             scale, thick, color):
@@ -55,6 +75,7 @@ def text2img(tx1, tx2, cl1, cl2):
     img = textimg(img, tx2[1], ft2, x2, y2, scale2, thick2, color2)
     cv2.circle(img, c2, radius, cl2[0], -1)
     cv2.circle(img, c2, radius, cl2[1], 3)
+    img = sticklogo(img, logo_path)
     return img
     
 tx = [('Vacant',' '),

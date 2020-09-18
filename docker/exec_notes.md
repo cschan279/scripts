@@ -5,8 +5,9 @@ docker run -it --gpus all --name gpu-base nvidia/cuda:10.0-cudnn7-devel-ubuntu18
 add following for gui
 ```
 -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix
+-e DISPLAY=$DISPLAY --volume="$HOME/.Xauthority:/root/.Xauthority:rw"
 ```
-
+ps ```xhost local:root``` on host to enable accessing to xserver
 
 start the docker with its init command: 
 ```

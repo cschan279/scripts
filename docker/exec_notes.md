@@ -18,3 +18,17 @@ enter to a running docker container with command bash
 ```
 docker exec -it gpu-base /bin/bash
 ```
+
+
+success script history
+```
+xhost +
+xhost local:root
+```
+```
+docker run -it --gpus all -e DISPLAY=$DISPLAY --volume="$HOME/.Xauthority:/root/.Xauthority:rw" --net=host -p 5000:5000 --name gpu-base nvidia/cuda:10.0-cudnn7-devel-ubuntu18.04 bash
+docker start gpu-base
+docker exec -it gpu-base /bin/bash
+docker stop gpu-base
+docker container rm gpu-base
+```

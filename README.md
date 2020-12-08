@@ -1,1 +1,5 @@
 # scripts
+# for tf-1.x
+```tf.test.is_gpu_available()```
+# for tf-2.x
+```tf.config.list_physical_devices('GPU')```

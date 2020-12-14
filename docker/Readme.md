@@ -1,3 +1,11 @@
+Add current user to docker group
+```
+sudo groupadd docker
+sudo gpasswd -a $USER docker
+sudo service docker restart
+```
+
+
 create and run docker container named as ```gpu-base```,  init it with command bash
 ```
 docker run -it --gpus all --name gpu-base nvidia/cuda:10.0-cudnn7-devel-ubuntu18.04 bash

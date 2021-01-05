@@ -18,3 +18,7 @@ Enable Network Manager
 sudo touch /etc/NetworkManager/conf.d/10-globally-managed-devices.conf
 sudo systemctl restart NetworkManager
 ```
+
+For long directory on terminal, 
+search ```"$color_prompt" = yes``` in ```.bashrc```, 
+add ```\n``` or anything simular, such as ```***\n$```

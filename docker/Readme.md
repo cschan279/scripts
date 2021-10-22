@@ -40,3 +40,8 @@ docker exec -it gpu-base /bin/bash
 docker stop gpu-base
 docker container rm gpu-base
 ```
+
+
+```
+docker run -it --volume="/media/$USER/{drive}:/root/{name}:rw" --name {name} ubuntu:focal bash
+```
